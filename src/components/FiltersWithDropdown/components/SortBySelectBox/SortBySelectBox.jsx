@@ -4,13 +4,16 @@ import Box from '@mui/material/Box'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
+import { getAllUserMethod } from '../../../../../utils/serverRequest'
 
-function SortBySelectBox() {
+function SortBySelectBox({ setfilteredProducts }) {
   const theme = useTheme()
-  const [sortBy, setSortBy] = useState(2)
+  const [sortBy, setSortBy] = useState("")
 
-  const handleSelectChange = (event) => {
+  const handleSelectChange = async (event) => {
     setSortBy(event.target.value)
+   const updatedData = await getAllUserMethod(event.target.value)
+   setfilteredProducts(updatedData)
   }
 
   return (
@@ -28,10 +31,10 @@ function SortBySelectBox() {
             },
           }}
         >
-          <MenuItem value={1}>Best seller</MenuItem>
-          <MenuItem value={2}>Best match</MenuItem>
-          <MenuItem value={3}>Price: low to high</MenuItem>
-          <MenuItem value={4}>Price: high to low</MenuItem>
+          <MenuItem value={"reviewScore=desc"}>Review</MenuItem>
+          <MenuItem value={"reviewCount=desc"}>ReviewCount</MenuItem>
+          <MenuItem value={"price=asc"}>Price: low to high</MenuItem>
+          <MenuItem value={"price=desc"}>Price: high to low</MenuItem>
         </Select>
       </FormControl>
     </Box>

@@ -10,50 +10,13 @@ import { alpha, useTheme } from '@mui/material/styles'
 
 import Container from '../Container'
 
-const mock = [
-  {
-    media: 'https://assets.maccarianagency.com/backgrounds/img56.jpg',
-    title: 'Adidas shoes',
-    description: 'Discover the new collection of Adidas.',
-    price: '$69.90',
-    href: '#',
-    reviewScore: 5,
-    reviewCount: 12,
-  },
-  {
-    media: 'https://assets.maccarianagency.com/backgrounds/img63.jpg',
-    title: 'Colorful shoes',
-    description: 'Colorful shoes designed for everyone.',
-    price: '$39.90',
-    reviewScore: 4,
-    reviewCount: 6,
-  },
-  {
-    media: 'https://assets.maccarianagency.com/backgrounds/img57.jpg',
-    title: 'Nike',
-    description: 'New arrivals of Nike sport shoes.',
-    price: '$49.90',
-    href: '#',
-    reviewScore: 5,
-    reviewCount: 8,
-  },
-  {
-    media: 'https://assets.maccarianagency.com/backgrounds/img58.jpg',
-    title: 'Sneakers',
-    description: 'Trendy Sneakers designed for everyone.',
-    price: '$59.90',
-    reviewScore: 4,
-    reviewCount: 10,
-  },
-]
-
-function Product() {
+function Product( { products }) {
   const theme = useTheme()
 
   return (
     <Container>
       <Grid container spacing={4}>
-        {mock.map((item, i) => (
+        {products.map((item, i) => (
           <Grid item xs={12} sm={6} md={3} key={i}>
             <Box display="block" width={1} height={1}>
               <Card
@@ -69,7 +32,7 @@ function Product() {
               >
                 <CardMedia
                   title={item.title}
-                  image={item.media}
+                  image={item.image}
                   sx={{
                     position: 'relative',
                     height: 320,

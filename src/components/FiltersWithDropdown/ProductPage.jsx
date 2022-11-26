@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTheme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -11,8 +11,9 @@ import FilterBrand from './components/FilterBrand/FilterBrand'
 import SortBySelectBox from './components/SortBySelectBox/SortBySelectBox'
 import Product from '../MinimallyDesigned/MinimallyDesigned'
 
-function FiltersWithDropdown() {
-  const theme = useTheme()
+function FiltersWithDropdown({ products }) {
+  const theme = useTheme();
+  const [allProducts, setAllProducts] = useState(products || []) 
   return (
     <Container>
       <Box>
@@ -48,11 +49,11 @@ function FiltersWithDropdown() {
           <Typography sx={{ whiteSpace: 'nowrap' }} marginRight={1}>
             Sort by
           </Typography>
-          <SortBySelectBox />
+          <SortBySelectBox setfilteredProducts={setAllProducts} />
         </Box>
       </Box>
-      <Box borderRadius={2} border={`4px dashed ${theme.palette.divider}`} height={400} >
-        <Product />
+      <Box borderRadius={2} border={`4px dashed ${theme.palette.divider}`}  >
+        <Product products={allProducts} />
       </Box>
     </Container>
   )

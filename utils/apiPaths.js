@@ -1,0 +1,1 @@
+export const getAllUserPath = "http://localhost:7000/product/getAll"
